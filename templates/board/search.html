@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!--인기글은 추천수로, 나머지는 최근글로-->
+{% block content %}
+<!--카테고리-->
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+        <a class="btn btn-outline-dark btn-sm px-3 ml-4 mr-4" href="{%url 'board:board_all' %}">전체글</a>
+        <a class="btn btn-outline-dark btn-sm px-3 ml-4 mr-4" href="{%url 'board:board_hot' %}">인기글</a>
+        <a class="btn btn-outline-dark btn-sm px-3 ml-4 mr-4" href="{%url 'board:board_mammals' %}">포유류</a>
+        <a class="btn btn-outline-dark btn-sm px-3 ml-4 mr-4" href="{%url 'board:board_amphibian' %}">양서류</a>
+        <a class="btn btn-outline-dark btn-sm px-3 ml-4 mr-4" href="{%url 'board:board_reptilia' %}">파충류</a>
+        <a class="btn btn-outline-dark btn-sm px-4 ml-4 mr-4" href="{%url 'board:board_bird' %}">조류</a>
+        <a class="btn btn-outline-dark btn-sm px-4 ml-4 mr-4" href="{%url 'board:board_fish' %}">어류</a>
+        <a class="btn btn-outline-dark btn-sm px-4 ml-4 mr-4" href="{%url 'board:board_etc' %}">기타</a>
+    </div>
+
+
+<!--한 줄에 5개씩 출력-->
+<div class="container mt-5">
+    <!--<h2>검색결과:{{search}}</h2>-->
+    <div class="row">
+    <h3>다음의 검색 결과 : {{ input }}</h3>
+        <div id="video_list_search" class="col-md-12">
+            {% for post in search_list %}
+                <h4><a href="{%url 'board:detail' post.id %}">{{ post.title }}</a></h4>
+                by {{post.writer}}
+            {% endfor %}
+            <hr>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
